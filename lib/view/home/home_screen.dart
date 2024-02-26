@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:learn_japanese_app/view/home/jlpt/n5.dart';
 
 import '../../controller/home_screen_controller.dart';
 
@@ -11,23 +12,22 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Obx(
-        () {
-          if (homeScreenC.listN5.isEmpty) {
-            return LinearProgressIndicator();
-          }
-          return ListView.builder(
-            shrinkWrap: true,
-            itemCount: homeScreenC.listN5.length,
-            itemBuilder: (context, index) {
-              var _data = homeScreenC.listN5[index];
-              return ListTile(
-                leading: Text("${_data.kanji}"),
-                title: Text("${_data.kunyomi}"),
-                subtitle: Text("${_data.arti}"),
-                trailing: Text("${index + 1}"),
-              );
+      body: ListView.builder(
+        shrinkWrap: true,
+        itemCount: 5,
+        itemBuilder: (context, i) {
+          return InkWell(
+            onTap: () {
+              Get.to(N5Screen());
             },
+            child: Card(
+              child: ListTile(
+                leading: Text("N${i + 1}"),
+                title: Text("N${i + 1}"),
+                subtitle: Text("N${i + 1}"),
+                trailing: Text("N${i + 1}"),
+              ),
+            ),
           );
         },
       ),

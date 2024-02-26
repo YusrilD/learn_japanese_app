@@ -1,17 +1,16 @@
+import 'dart:math';
+
 import 'package:get/get.dart';
 import 'package:learn_japanese_app/controller/api_controller.dart';
-import 'package:learn_japanese_app/model/n5_model.dart';
+
+import '../model/n5_model.dart';
 import '../util/endpoint.dart';
 
-class HomeScreenController extends GetxController {
+class N5Controller extends GetxController {
   var getN5Loading = false.obs;
   var getN5Failed = false.obs;
   var apiC = Get.find<ApiController>();
   var listN5 = <N5Model>[].obs;
-
-  var listOfPages = [
-
-  ];
 
   Future<void> getDataN5() async {
     getN5Loading.value = true;
@@ -25,6 +24,16 @@ class HomeScreenController extends GetxController {
       getN5Failed.value = true;
       getN5Loading.value = false;
     }
+  }
+
+  var randomList = <int>[];
+
+  List<int> generateRandomList(int index) {
+    Random random = Random();
+    randomList = List.generate(5, (index) => random.nextInt(100) + 1);
+    var indexRandom = random.nextInt(5);
+    randomList[indexRandom] = index;
+    return randomList;
   }
 
   @override
